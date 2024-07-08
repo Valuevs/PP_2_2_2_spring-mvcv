@@ -25,7 +25,9 @@ public class CarServiceImpl implements CarService {
 
     @Override
     public List<Car> getCars(Integer count) {
-        if (count == null || count >= 5) {
+        if (count == null || count < 0) {
+            throw new IllegalArgumentException("Count cannot be null or negative.");
+        } else if (count >= 5) {
             return cars;
         } else {
             return cars.stream()
